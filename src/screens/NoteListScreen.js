@@ -12,7 +12,10 @@ const NoteListScreen = (props) => {
         </Text>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.addButton}>
+        <TouchableOpacity 
+          style={styles.addButton}
+          onPress={() => navigation.navigate('CreateNote')}
+        >
           <Icon 
             name='plus'
             type='antdesign'
