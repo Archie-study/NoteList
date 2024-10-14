@@ -1,15 +1,15 @@
 import React from 'react'
 import 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-// import HelloScreen from './src/screens/HelloScreen'
 import MainNavigator from './src/navigator/MainNavigator'
-import TryCodeScreen from './src/screens/TryCodeScreen'
+// import HelloScreen from './src/screens/HelloScreen'
+// import TryCodeScreen from './src/screens/TryCodeScreen'
 
 const App = () => {
   return (
     <SafeAreaProvider>
-      {/* <MainNavigator /> */}
-      <TryCodeScreen />
+      <MainNavigator />
+      {/* <TryCodeScreen /> */}
     </SafeAreaProvider>
   )
 }
