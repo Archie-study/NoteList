@@ -1,14 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 import { Icon } from 'react-native-elements'
+import realm from '../../store/realm'
+
+const saveNote = (newNote) => {
+  if(newNote !== ''){
+    realm.write(() => {
+      realm.create("Note", {
+        id: 1,
+        note: newNote
+      });
+    });
+    alert('Successfully save your note!')
+  } else {
+    alert('Empty note!')
+  }
+};
 
 const AddNoteScreen = (props) => {
+  
   const { navigation } = props;
+  const [tempNote, setTempNote ] = useState('');
+
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.headerContainer}>
         <Text style={styles.title}>Create</Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={() => saveNote(tempNote)}
+        >
           <Icon 
             name='check'
             type='font-awesome-5'
@@ -21,6 +43,7 @@ const AddNoteScreen = (props) => {
         multiline
         placeholder='Write here'
         style={styles.input}
+        onChangeText={(text) => setTempNote(text)}
       />
     </View>
   )
