@@ -3,25 +3,38 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-nativ
 import { Icon } from 'react-native-elements'
 import realm from '../../store/realm'
 
-const saveNote = (newNote) => {
-  if(newNote !== ''){
-    realm.write(() => {
-      realm.create("Note", {
-        id: 1,
-        note: newNote
-      });
-    });
-    alert('Successfully save your note!')
-  } else {
-    alert('Empty note!')
-  }
-};
+
 
 const AddNoteScreen = (props) => {
   
   const { navigation } = props;
   const [tempNote, setTempNote ] = useState('');
 
+  const saveNote = (newNote) => {
+    const allData = realm.objects('Note');
+    const dataLength = allData.length;
+    let lastIdFromRealm = 0;
+
+    if(dataLength !== 0){
+      lastIdFromRealm = allData[dataLength - 1].id;
+    }
+
+    allData.length === 0 ? id = 1 : id = lastIdFromRealm + 1
+
+    if(newNote !== ''){
+      realm.write(() => {
+        realm.create("Note", {
+          id: 3,
+          note: newNote
+        });
+      });
+      alert('Successfully save your note!')
+      const data = realm.objects('Note')
+      console.log(data)
+    } else {
+      alert('Empty note!')
+    }
+  };
 
   return (
     <View style={styles.mainContainer}>
