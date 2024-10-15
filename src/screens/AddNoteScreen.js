@@ -19,13 +19,14 @@ const AddNoteScreen = (props) => {
       lastIdFromRealm = allData[dataLength - 1].id;
     }
 
-    allData.length === 0 ? id = 1 : id = lastIdFromRealm + 1
+    // allData.length === 0 ? id = 1 : id = lastIdFromRealm + 1
 
     if(newNote !== ''){
       realm.write(() => {
         realm.create("Note", {
-          id: 3,
-          note: newNote
+          id: dataLength === 0 ? 1 : lastIdFromRealm + 1,
+          note: newNote,
+          date: new Date().toISOString()
         });
       });
       alert('Successfully save your note!')
