@@ -9,6 +9,19 @@ const NoteListScreen = (props) => {
 
   const [ data, setData ] = useState([]);
 
+  const dateFormat = (date) => {
+    const months = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    const noteDate = new Date(date);
+    const dateOnly = noteDate.getDate();
+    const monthOnly = noteDate.getMonth();
+    const yearOnly = noteDate.getFullYear();
+
+    return months[monthOnly] + ' ' + dateOnly + ', ' + yearOnly
+  };
+
   useEffect(() => {
     setData(realm.objects('Note'));
   }, [])
@@ -38,7 +51,7 @@ const NoteListScreen = (props) => {
                   </Text>
                 </View>
                 <Text style={styles.dateText}>
-                  {item.date}
+                  {dateFormat(item.date)}
                 </Text>
               </TouchableOpacity>
             </View>

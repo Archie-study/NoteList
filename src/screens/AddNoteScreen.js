@@ -43,7 +43,11 @@ const AddNoteScreen = (props) => {
         <Text style={styles.title}>Create</Text>
         <TouchableOpacity 
           style={styles.button}
-          onPress={() => saveNote(tempNote)}
+          onPress={() => {
+            saveNote(tempNote)
+            navigation.navigate('NoteList')}
+          }
+            
         >
           <Icon 
             name='check'
@@ -58,6 +62,7 @@ const AddNoteScreen = (props) => {
         placeholder='Write here'
         style={styles.input}
         onChangeText={(text) => setTempNote(text)}
+        
       />
     </View>
   )
