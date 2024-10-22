@@ -22,8 +22,23 @@ const NoteListScreen = (props) => {
     return months[monthOnly] + ' ' + dateOnly + ', ' + yearOnly
   };
 
+  // useEffect(() => {
+  //   setData(realm.objects('Note'));
+  // }, [])
+
+  // useEffect(() => {
+  //   const notes = realm.objects('Note');
+  //   const notesByDate = notes.sorted('date', true);
+  //   setData(notesByDate);
+  // }, [])
+
   useEffect(() => {
-    setData(realm.objects('Note'));
+    const noteListPage = navigation.addListener('focus', () => {
+      const notes = realm.objects('Note');
+      const notesByDate = notes.sorted('date', true);
+      setData(notesByDate)
+    })
+    return noteListPage
   }, [])
 
   return (
